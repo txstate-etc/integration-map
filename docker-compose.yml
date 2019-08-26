@@ -1,7 +1,7 @@
 version: '3'
 services:
-  force-grapher:
-    container_name: force-grapher
+  integration-map:
+    container_name: integration-map
     build:
       context: .
     ports: 
@@ -9,12 +9,5 @@ services:
     volumes:
       - ./src:/usr/src/app/src
       - ./public:/usr/src/app/public
-  mongodb:
-    container_name: graphdb
-    image: mongo:latest
-    ports:
-      - 27017:27017
-    volumes:
-      - forcegrapher:/data/db
 volumes:
   forcegrapher: {}

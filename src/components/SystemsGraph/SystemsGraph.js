@@ -85,9 +85,11 @@ const buildGraphData = (nodes, edges) => {
         min: 15,
         max: 40,
         label: {
+          min: 15,
+          max: 40,
           enabled: true
         },
-        customScalingFunction: (min, max, total, value) => {
+        customScalingFunction: (min, max, _total, value) => {
           if (min === max) return 0.5
           const scale = 1 / (max - min)
           return Math.max(0, (value - min) * scale)
@@ -108,6 +110,8 @@ const buildGraphData = (nodes, edges) => {
       y: get(node, 'position.y')
     })
   })
+  console.log(graphData)
+
 
   const edgeKeys = Object.keys(edges || {})
   edgeKeys.forEach(nodeId => {
@@ -284,7 +288,8 @@ export const SystemsGraph = () => {
   useEvent('deselect-active-node', resetActiveNode)
   useEvent('node-added', updateLastAdded)
   useEvent('delete-selected-nodes', deleteSelectedNodes)
-
+ 
+  // Main
   useEffect(() => {
     const options = {
       autoResize: true,
